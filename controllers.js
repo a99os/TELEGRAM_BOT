@@ -11,8 +11,13 @@ module.exports = class Controllers {
     });
 
     if (!user) {
+      await psql.users.create({
+        chat_id,
+      });
+      bot.sendMessage(chat_id, "Siz bo'tda yangisiz, ismingizni kiriting");
+    } else {
+      bot.sendMessage(chat_id, "Siz eskisiz");
     }
-
-    bot.sendMessage(chat_id, text);
   }
+  static async setName(tetx, bot, psql) {}
 };
